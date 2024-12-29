@@ -36,10 +36,18 @@ public class PlayerMove : MonoBehaviour
         this.transform.position = temppos;
     }
 
+    public Camera maincam;
     void UpdateRotation1()
     {
-        float centerx = 1920.0f * 0.5f;
-        float centery = 1080.0f * 0.5f;
+        Camera cam = maincam;
+        // -1~1 사이값으로 하는것 ViewPort
+        //Vector3 viewport = cam.WorldToViewportPoint(this.transform.position);
+
+        // 화면 의 왼쪽 하단을 기준 스크린 사이즈에 맞추어서 좌표 반환
+        Vector3 screenpos = cam.WorldToScreenPoint(this.transform.position);
+
+        float centerx = screenpos.x;// 1920.0f * 0.5f;
+        float centery = screenpos.y;// 1080.0f * 0.5f;
 
         Vector3 pos = Input.mousePosition;
         Debug.Log($"마우스 : {pos}");
