@@ -31,6 +31,8 @@ public class TargetFollwer : MonoBehaviour
         //            , SmothWeight);
         //Vector3.SmoothDamp()
 
+
+
         transform.position = Vector3.Lerp( transform.position
                             , TargetTrans.position - m_LocalOffset + Offset
                             , SmothWeight );
