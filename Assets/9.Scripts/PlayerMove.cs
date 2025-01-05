@@ -4,35 +4,41 @@ public class PlayerMove : MonoBehaviour
 {
     void Start()
     {
-        
+        m_Animator = GetComponent<Animator>();
+
     }
 
     public float MoveSpeed = 1;
 
+    public Animator m_Animator = null;
     void UpdateMove()
     {
-        //float xx = 0;
-        //if( Input.GetKey(KeyCode.A)
-        //    || Input.GetKey(KeyCode.LeftArrow) )
-        //{
-        //    xx = -1;
-        //}
-        //if (Input.GetKey(KeyCode.D))
-        //{
-        //    xx = 1;
-        //}
-
-
         // a, d, <-, ->
         // -1 ~ 1
         float xx = Input.GetAxis("Horizontal");
+        float zz = Input.GetAxis("Vertical");
         //Time.time;
         //w, s, a,d, 화살표 이용해서 이동처리
         Vector3 temppos = transform.position;
         temppos.x += xx * MoveSpeed * Time.deltaTime;
-        temppos.z += Input.GetAxis("Vertical") * MoveSpeed * Time.deltaTime;
+        temppos.z += zz * MoveSpeed * Time.deltaTime;
 
         this.transform.position = temppos;
+
+
+        // 애니메이션 코드 방식 적용
+        if( xx == 0 && zz == 0)
+        {
+            // 안움직
+            //Animator ani = GetComponent<Animator>();
+            m_Animator.SetBool("Move", false);
+        }
+        else
+        {
+            // 움직임
+            //Animator ani = GetComponent<Animator>();
+            m_Animator.SetBool("Move", true);
+        }
     }
 
     public Camera maincam;
