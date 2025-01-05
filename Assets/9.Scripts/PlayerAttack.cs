@@ -70,9 +70,11 @@ public class PlayerAttack : MonoBehaviour
         m_LinkLineRender.SetPosition(0, EndBariel.position);
         m_LinkLineRender.SetPosition(1, endlinepos );
 
+        m_LineDurationSec = LineShowSec;
     }
 
-    
+    public float m_LineDurationSec = 0f;
+    public float LineShowSec = 0.2f;
 
 
 
@@ -88,6 +90,13 @@ public class PlayerAttack : MonoBehaviour
     {
         //Fire1();
         UpdateFire2();
+
+        m_LineDurationSec -= Time.deltaTime;
+        if(m_LineDurationSec <= 0f
+            && m_LinkLineRender.gameObject.activeInHierarchy )
+        {
+            m_LinkLineRender.gameObject.SetActive(false);
+        }
     }
 
 
