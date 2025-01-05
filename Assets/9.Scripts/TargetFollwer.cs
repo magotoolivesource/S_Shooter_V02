@@ -1,15 +1,14 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class TargetFollwer : MonoBehaviour
 {
-    // Å¸°Ù µî·ÏÇÏ¸é µû¶ó°¡µµ·Ï ÇÏ±â
+    // íƒ€ê²Ÿ ë“±ë¡í•˜ë©´ ë”°ë¼ê°€ë„ë¡ í•˜ê¸°
     public Transform TargetTrans;
     public float SmothWeight = 0.1f;
 
     public Vector3 Offset;
     protected Vector3 m_LocalOffset;
 
-    
     void Start()
     {
         m_LocalOffset = TargetTrans.position - this.transform.position;
@@ -17,7 +16,7 @@ public class TargetFollwer : MonoBehaviour
 
     void Update()
     {
-        // º¸°£ Time.deltatime
+        // ë³´ê°„ Time.deltatime
         // 
         // t : 0~1
         //float xx = Mathf.Lerp(transform.position.x

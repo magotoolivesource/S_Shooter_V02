@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -7,16 +7,16 @@ public class PlayerAttack : MonoBehaviour
     public float DelayAttackSec = 1f;
     void Fire1()
     {
-        // ¸¶¿ì½º¸¦ ´©¸£°í ÀÖÀ¸¸é 1ÃÊ¿¡ ÇÑ¹ø¾¿ °ø°İ
-        // ¸¶¿ì½º¸¦ ´©¸£°íÀÖ´Ù
+        // ë§ˆìš°ìŠ¤ë¥¼ ëˆ„ë¥´ê³  ìˆìœ¼ë©´ 1ì´ˆì— í•œë²ˆì”© ê³µê²©
+        // ë§ˆìš°ìŠ¤ë¥¼ ëˆ„ë¥´ê³ ìˆë‹¤
         if (Input.GetMouseButton(0))
         {
-            // 1ÃÊ¿¡ ÇÑ¹ø¾¿
-            //Time.time; // 24ÀÏ ÀÌ ÃÖ´ë
+            // 1ì´ˆì— í•œë²ˆì”©
+            //Time.time; // 24ì¼ ì´ ìµœëŒ€
 
             if (m_CurrTime < Time.time)
             {
-                Debug.Log("°ø°İ");
+                Debug.Log("ê³µê²©");
                 m_CurrTime = Time.time + DelayAttackSec;
             }
 
@@ -36,7 +36,7 @@ public class PlayerAttack : MonoBehaviour
             if (Input.GetMouseButton(0))
             {
                 RemineSec = DelayAttackSec;
-                Debug.Log("°ø°İ2");
+                Debug.Log("ê³µê²©2");
                 Attack();
             }
         }
@@ -46,25 +46,41 @@ public class PlayerAttack : MonoBehaviour
     public Transform EndBariel = null;
     void Attack()
     {
+
+        Vector3 endlinepos = EndBariel.position + EndBariel.forward * 100f;
         RaycastHit hit;
-        // fps °ÔÀÓ ÃÑ¾Ë °ø°İ 
+        // fps ê²Œì„ ì´ì•Œ ê³µê²© 
         if ( Physics.Raycast(EndBariel.position
             , EndBariel.forward
             , out hit) )
         {
-            // ·¹ÀÌÀú¿Í ºÎµúÈù ¿ÀºêÁ§Æ® ÀÌ¸§ Ãâ·Â
+            // ë ˆì´ì €ì™€ ë¶€ë”ªíŒ ì˜¤ë¸Œì íŠ¸ ì´ë¦„ ì¶œë ¥
             Debug.Log( $"{hit.transform.name }" );
+            endlinepos = hit.point;
+
         }
 
         //Debug.DrawLine(EndBariel.position
         //    , EndBariel.position + EndBariel.forward * 100f
         //    , Color.red, 2f);
 
+        // ë¼ì¸ ê·¸ë¦¬ê¸°
+        // 0.1ì´ˆë’¤ ì‚¬ë¼ì§€ë„ë¡ í•˜ê¸°
+        m_LinkLineRender.gameObject.SetActive(true);
+        m_LinkLineRender.SetPosition(0, EndBariel.position);
+        m_LinkLineRender.SetPosition(1, endlinepos );
+
     }
+
+    
+
+
+
+    public LineRenderer m_LinkLineRender = null;
 
     void Start()
     {
-        m_CurrTime = Time.time; // 1ÃÊ
+        m_CurrTime = Time.time; // 1ì´ˆ
     }
 
 

@@ -376,9 +376,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08e2d4e92cc5bb24480320802269a97c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DelayAttackSec: 1
+  DelayAttackSec: 0.2
   RemineSec: 0
   EndBariel: {fileID: 23103891}
+  m_LinkLineRender: {fileID: 1527969037}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,7 +775,6 @@ LineRenderer:
   m_Positions:
   - {x: 0, y: 1, z: 0}
   - {x: 0, y: 1, z: 4.11}
-  - {x: 0, y: 6.34, z: 4.11}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.1
