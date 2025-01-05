@@ -10,7 +10,7 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         m_Animator = GetComponent<Animator>();
-        m_CurrTime = Time.time; // 1초
+        
     }
 
     public float MoveSpeed = 1;
@@ -75,50 +75,11 @@ public class PlayerMove : MonoBehaviour
                                     , 0);
     }
 
-    float m_CurrTime = 0;
-    public float DelayAttackSec = 1f;
-    void Fire1()
-    {
-        // 마우스를 누르고 있으면 1초에 한번씩 공격
-        // 마우스를 누르고있다
-        if( Input.GetMouseButton(0) )
-        {
-            // 1초에 한번씩
-            //Time.time; // 24일 이 최대
-            
-            if(m_CurrTime < Time.time )
-            {
-                Debug.Log("공격");
-                m_CurrTime = Time.time + DelayAttackSec;
-            }
-            
-        }
-
-    }
-
-
-    public float RemineSec = 0f;
-    void UpdateFire2()
-    {
-        // 0.0001f -= 10f; // 2
-        RemineSec -= Time.deltaTime;
-
-        if ( RemineSec <= 0 )
-        {
-            if (Input.GetMouseButton(0))
-            {
-                RemineSec = DelayAttackSec;
-                Debug.Log("공격2");
-            }
-        }
-
-    }
 
     void Update()
     {
         UpdateMove();
         UpdateRotation1();
-        //Fire1();
-        UpdateFire2();
+        
     }
 }
