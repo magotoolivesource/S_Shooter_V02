@@ -2,10 +2,15 @@
 
 public class PlayerMove : MonoBehaviour
 {
+
+    // 마우스 왼쪽 버턴 누르고 있으면
+    // 마구 클릭을 해도 
+    // 1초에 한번씩 발사란 로그 출력 하도록 하기
+
     void Start()
     {
         m_Animator = GetComponent<Animator>();
-
+        m_CurrTime = Time.time; // 1초
     }
 
     public float MoveSpeed = 1;
@@ -28,6 +33,7 @@ public class PlayerMove : MonoBehaviour
 
         // 애니메이션 코드 방식 적용
         if( xx == 0 && zz == 0)
+        //if ( xx != 0 || zz != 0 ) // 반대 방법
         {
             // 안움직
             //Animator ani = GetComponent<Animator>();
@@ -55,13 +61,13 @@ public class PlayerMove : MonoBehaviour
         float centery = screenpos.y;// 1080.0f * 0.5f;
 
         Vector3 pos = Input.mousePosition;
-        Debug.Log($"마우스 : {pos}");
+        //Debug.Log($"마우스 : {pos}");
 
         // 마우스 위치를 이용한 회전
         float targetx = pos.x - centerx;
         float targety = pos.y - centery;
         float radian = Mathf.Atan2( -targety, targetx);
-        Debug.Log($"회전 : {radian}");
+        //Debug.Log($"회전 : {radian}");
 
         // 3.141595f
         this.transform.rotation = Quaternion.Euler(0
@@ -69,10 +75,50 @@ public class PlayerMove : MonoBehaviour
                                     , 0);
     }
 
+    float m_CurrTime = 0;
+    public float DelayAttackSec = 1f;
+    void Fire1()
+    {
+        // 마우스를 누르고 있으면 1초에 한번씩 공격
+        // 마우스를 누르고있다
+        if( Input.GetMouseButton(0) )
+        {
+            // 1초에 한번씩
+            //Time.time; // 24일 이 최대
+            
+            if(m_CurrTime < Time.time )
+            {
+                Debug.Log("공격");
+                m_CurrTime = Time.time + DelayAttackSec;
+            }
+            
+        }
+
+    }
+
+
+    public float RemineSec = 0f;
+    void UpdateFire2()
+    {
+        // 0.0001f -= 10f; // 2
+        RemineSec -= Time.deltaTime;
+
+        if ( RemineSec <= 0 )
+        {
+            if (Input.GetMouseButton(0))
+            {
+                RemineSec = DelayAttackSec;
+                Debug.Log("공격2");
+            }
+        }
+
+    }
+
     void Update()
     {
         UpdateMove();
         UpdateRotation1();
-
+        //Fire1();
+        UpdateFire2();
     }
 }
