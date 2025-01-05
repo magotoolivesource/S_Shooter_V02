@@ -46,6 +46,11 @@ public class PlayerAttack : MonoBehaviour
     public Transform EndBariel = null;
     void Attack()
     {
+        //// 총기류
+        //Physics.OverlapBox();
+        //Physics.OverlapCapsule();
+        //Physics.OverlapSphere();
+
 
         Vector3 endlinepos = EndBariel.position + EndBariel.forward * 100f;
         RaycastHit hit;
@@ -73,9 +78,12 @@ public class PlayerAttack : MonoBehaviour
         m_LineDurationSec = LineShowSec;
     }
 
+    // 시간 적용
+    // 업데이트에서 적용된 시간 빼기
+    // 시간이 0이되면 setactive(false) 하기
+    // 다른 조건도 적용 해서 
     public float m_LineDurationSec = 0f;
     public float LineShowSec = 0.2f;
-
 
 
     public LineRenderer m_LinkLineRender = null;
