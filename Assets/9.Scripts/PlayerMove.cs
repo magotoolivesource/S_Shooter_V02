@@ -9,7 +9,6 @@ public class PlayerMove : MonoBehaviour
 
     public float MoveSpeed = 1;
 
-
     void UpdateMove()
     {
         //float xx = 0;
