@@ -55,7 +55,11 @@ public class EnemyTarget : MonoBehaviour
     }
     void Update()
     {
-        m_LinkAgent.SetDestination(Target.position);
+        if( m_LinkAgent.enabled )
+        {
+            m_LinkAgent.SetDestination(Target.position);
+        }
+        
 
         UpdateMoveAnimation();
         

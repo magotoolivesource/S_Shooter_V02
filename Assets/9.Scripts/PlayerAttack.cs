@@ -75,6 +75,17 @@ public class PlayerAttack : MonoBehaviour
             // hit 안의 노멀값 활용
             cloneparticle.transform.rotation = Quaternion.LookRotation(hit.normal);
             GameObject.Destroy(cloneparticle, 5f);
+
+
+            // 적을 알아내야지
+            // SetDamage(1f);
+            EnemyHPStat hpstat = hit.transform.GetComponent<EnemyHPStat>();
+
+            if ( hpstat != null )
+            {
+                hpstat.SetDamage(1f);
+            }
+            
         }
 
         //Debug.DrawLine(EndBariel.position
