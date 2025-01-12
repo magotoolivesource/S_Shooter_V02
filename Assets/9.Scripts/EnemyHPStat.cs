@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
@@ -30,7 +31,48 @@ public class EnemyHPStat : MonoBehaviour
 
             //Thread.Sleep(1000);
             m_ISDeath = true;
+
+            StartCoroutine( FallDown() );
+            
         }
+    }
+
+
+    IEnumerator FallDown()
+    {
+
+        //// return 과 같다
+        //if( true)
+        //    yield break;
+
+        // 1초대기
+        yield return new WaitForSeconds(1f);
+
+        //// 아래로 이동처리
+        //while(true)
+        //{
+        //    transform.Translate(0f, 1f * Time.deltaTime, 0f);
+        //    if( transform.position.y <= 5f)
+        //    {
+        //        break;
+        //    }
+        //    yield return null; // 1프레임 대기
+        //}
+
+        // 아래로 이동
+        for (int i = 0; i < 1000; i++)
+        {
+            transform.Translate(0f, -1f * Time.deltaTime, 0f);
+            if (transform.position.y <= -5f)
+            {
+                break;
+            }
+
+            yield return null; // 1프레임 대기
+        }
+
+        // 지우기
+        GameObject.Destroy(gameObject);
     }
 
     void Start()
@@ -38,15 +80,18 @@ public class EnemyHPStat : MonoBehaviour
         
     }
 
+
+
+
     bool m_ISDeath = false;
     float m_DeathDelaySec = 1f;
     float m_FallDownDelaySec = 3f;
-    void Update()
+    void UpdateCodeFallDown()
     {
-        if( m_ISDeath )
+        if (m_ISDeath)
         {
             m_DeathDelaySec -= Time.deltaTime;
-            if( m_DeathDelaySec <= 0f)
+            if (m_DeathDelaySec <= 0f)
             {
                 // 아래로 이동 처리
                 Vector3 temppos = transform.position;
@@ -54,18 +99,24 @@ public class EnemyHPStat : MonoBehaviour
                 transform.position = temppos;
                 //transform.Translate(0f, 1f * Time.deltaTime, 0f);
 
-                if( transform.position.y <= -5f)
+                if (transform.position.y <= -5f)
                 {
                     GameObject.Destroy(gameObject);
                 }
 
                 m_FallDownDelaySec -= Time.deltaTime;
-                if( m_FallDownDelaySec <= 0f)
+                if (m_FallDownDelaySec <= 0f)
                 {
                     GameObject.Destroy(gameObject);
                 }
             }
         }
 
+    }
+    
+    void Update()
+    {
+        //UpdateCodeFallDown();
+        
     }
 }
