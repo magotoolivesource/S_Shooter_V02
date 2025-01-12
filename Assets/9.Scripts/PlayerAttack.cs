@@ -83,6 +83,7 @@ public class PlayerAttack : MonoBehaviour
 
             if ( hpstat != null )
             {
+                Debug.Log($"플레이어가 -> 공격 -> {hpstat.name}");
                 hpstat.SetDamage(1f);
             }
             

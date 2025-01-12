@@ -38,6 +38,12 @@ public class EnemyHPStat : MonoBehaviour
     }
 
 
+    void StartSinking(int p_val)
+    {
+        Debug.Log("함수 호출");
+    }
+
+
     IEnumerator FallDown()
     {
 
@@ -46,18 +52,7 @@ public class EnemyHPStat : MonoBehaviour
         //    yield break;
 
         // 1초대기
-        yield return new WaitForSeconds(1f);
-
-        //// 아래로 이동처리
-        //while(true)
-        //{
-        //    transform.Translate(0f, 1f * Time.deltaTime, 0f);
-        //    if( transform.position.y <= 5f)
-        //    {
-        //        break;
-        //    }
-        //    yield return null; // 1프레임 대기
-        //}
+        yield return new WaitForSeconds(1.06f);
 
         // 아래로 이동
         for (int i = 0; i < 1000; i++)
