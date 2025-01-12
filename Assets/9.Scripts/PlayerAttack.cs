@@ -44,6 +44,9 @@ public class PlayerAttack : MonoBehaviour
     }
 
     public Transform EndBariel = null;
+
+    [Header("[파티클용]")]
+    public GameObject m_HitParticle = null;
     void Attack()
     {
         //// 총기류
@@ -63,6 +66,15 @@ public class PlayerAttack : MonoBehaviour
             Debug.Log( $"{hit.transform.name }" );
             endlinepos = hit.point;
 
+            // 파티클 생성
+            //GameObject originalparticl = Resources.Load<GameObject>("GunParticles");
+            GameObject cloneparticle = GameObject.Instantiate(m_HitParticle);
+            cloneparticle.transform.position = hit.point;
+            // 파티클 회전
+            //cloneparticle.transform.rotation = Quaternion.LookRotation(-transform.forward);
+            // hit 안의 노멀값 활용
+            cloneparticle.transform.rotation = Quaternion.LookRotation(hit.normal);
+            GameObject.Destroy(cloneparticle, 5f);
         }
 
         //Debug.DrawLine(EndBariel.position
@@ -82,6 +94,7 @@ public class PlayerAttack : MonoBehaviour
     // 업데이트에서 적용된 시간 빼기
     // 시간이 0이되면 setactive(false) 하기
     // 다른 조건도 적용 해서 
+    [Header("[라인용]")]
     public float m_LineDurationSec = 0f;
     public float LineShowSec = 0.2f;
 

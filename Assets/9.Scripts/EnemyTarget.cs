@@ -38,6 +38,7 @@ public class EnemyTarget : MonoBehaviour
 
     void UpdateMoveAnimation()
     {
+
         if (m_LinkAgent.velocity.magnitude <= 0f)
         {
             // 멈췄다
@@ -45,6 +46,8 @@ public class EnemyTarget : MonoBehaviour
         }
         else
         {
+            float anispeed = m_LinkAgent.speed / 2.5f;
+            m_Animator.SetFloat("AniSpeed", anispeed);
             // 움직임
             m_Animator.SetBool("EnemyMove", true);
         }
