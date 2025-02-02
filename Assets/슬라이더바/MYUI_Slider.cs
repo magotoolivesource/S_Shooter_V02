@@ -3,12 +3,11 @@ using UnityEngine.UI;
 
 public class MYUI_Slider : MonoBehaviour
 {
-
     public int MAXHP = 4320;
 
     // 0~100
-    // Å°º¸µå + ´©¸£¸é ½½¶óÀÌ´õ °ª´õÇÏ±â 5¾¿Áõ°¡
-    // Å°º¸µå - ´©¸£¸é ½½¶óÀÌ´õ °ª»©±â 5¾¿»©±â
+    // í‚¤ë³´ë“œ + ëˆ„ë¥´ë©´ ìŠ¬ë¼ì´ë” ê°’ë”í•˜ê¸° 5ì”©ì¦ê°€
+    // í‚¤ë³´ë“œ - ëˆ„ë¥´ë©´ ìŠ¬ë¼ì´ë” ê°’ë¹¼ê¸° 5ì”©ë¹¼ê¸°
     public UnityEngine.UI.Slider LinkSlider;
     void Start()
     {

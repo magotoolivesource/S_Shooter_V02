@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent( typeof( NavMeshAgent ) )]
@@ -53,6 +53,7 @@ public class EnemyTarget : MonoBehaviour
         }
 
     }
+
     void Update()
     {
         if( m_LinkAgent.enabled )

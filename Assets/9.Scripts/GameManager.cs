@@ -6,12 +6,12 @@ public class GameManager : MonoBehaviour
 
     static public int Score;
 
+
     public void RestartGame()
     {
-        // ÇÃ·¹ÀÌ¾î ÃÊ±âÀ§Ä¡
-        // Àû ´ÙÁö¿ì±â
-        // Á¡¼ö 0À¸·Î ÇÏ±â
-        // 
+        // í”Œë ˆì´ì–´ ì´ˆê¸°ìœ„ì¹˜
+        // ì  ë‹¤ì§€ìš°ê¸°
+        // ì ìˆ˜ 0ìœ¼ë¡œ í•˜ê¸°
 
         SceneManager.LoadScene("SampleScene");
 

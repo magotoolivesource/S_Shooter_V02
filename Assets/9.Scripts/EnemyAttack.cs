@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    // ÇÃ·¹ÀÌ¾î°¡ 2¹Ì¸¸ °Å¸®ÀÏ¶§ °ø°İÃ³¸®
-    // °ø°İÁß °Å¸®°¡ 2ÀÌ»óÀÌµÇ¸é °ø°İÃë¼Ò
-    // ÇÃ·¹ÀÌ¾î¿¡°Ô °ø°İÇÒ¶§ 2ÃÊ¿¡ ÇÑ¹ø¾¿ °ø°İ Ã³¸®
 
-    
+    // í”Œë ˆì´ì–´ê°€ 2ë¯¸ë§Œ ê±°ë¦¬ì¼ë•Œ ê³µê²©ì²˜ë¦¬
+    // ê³µê²©ì¤‘ ê±°ë¦¬ê°€ 2ì´ìƒì´ë˜ë©´ ê³µê²©ì·¨ì†Œ
+    // í”Œë ˆì´ì–´ì—ê²Œ ê³µê²©í• ë•Œ 2ì´ˆì— í•œë²ˆì”© ê³µê²© ì²˜ë¦¬
+
 
     public LayerMask AttackLayerMask;
     void UpdateAttack()
@@ -33,19 +33,18 @@ public class EnemyAttack : MonoBehaviour
     protected PlayerStat TargetStat;
     void Start()
     {
-        // ¿ÀºêÁ§Æ® ÀÌ¸§À¸·ÎÃ£±â
+        // ì˜¤ë¸Œì íŠ¸ ì´ë¦„ìœ¼ë¡œì°¾ê¸°
         //GameObject obj = GameObject.Find("Player111");
-        // tagÅ¸ÀÔÀ¸·Î Ã£±â
+        // tagíƒ€ì…ìœ¼ë¡œ ì°¾ê¸°
         //GameObject obj = GameObject.FindGameObjectWithTag("Player");
         //GameObject[] objarr = GameObject.FindGameObjectsWithTag("Player");
 
-        // ÄÄÆ÷³ÍÆ® Å¸ÀÔÀ¸·Î Ã£±â
+        // ì»´í¬ë„ŒíŠ¸ íƒ€ì…ìœ¼ë¡œ ì°¾ê¸°
         TargetStat = GameObject.FindFirstObjectByType<PlayerStat>();
         //GameObject.FindObjectsByType<PlayerStat>()
 
         
     }
-
 
     public float AttackDealySec = 1f;
     protected float m_AttackCurrentSec = 0f;
@@ -56,7 +55,7 @@ public class EnemyAttack : MonoBehaviour
         if( vec.magnitude <= 2f
             && m_AttackCurrentSec <= 0f )
         {
-            Debug.Log($"{name} -> °ø°İ -> ÇÃ·¹ÀÌ¾î");
+            Debug.Log($"{name} -> ê³µê²© -> í”Œë ˆì´ì–´");
             TargetStat.SetDamage(1);
             m_AttackCurrentSec = AttackDealySec;
         }

@@ -20,7 +20,7 @@ public class PlayerStat : MonoBehaviour
 
 
         float weight = (float)HP / MaxHP;
-        // ½ºÆ®·¹Ã÷°¡ ¾Æ´Ò¶§¸¸ Àû¿ë °¡´É
+        // ìŠ¤íŠ¸ë ˆì¸ ê°€ ì•„ë‹ë•Œë§Œ ì ìš© ê°€ëŠ¥
         //HPImg.anchoredPosition
         HPImg.sizeDelta = new Vector2(128 * HPImgCount * weight, 128);
 
@@ -38,7 +38,7 @@ public class PlayerStat : MonoBehaviour
     {
         return MaxHP;
     }
-    // 0~1 hp ¿¡ °ü·ÃµÈ °ªÀ»
+    // 0~1 hp ì— ê´€ë ¨ëœ ê°’ì„
     public float GetUnlitHPValue()
     {
         return (float)HP / MaxHP;
@@ -63,7 +63,7 @@ public class PlayerStat : MonoBehaviour
 
         if ( HP <= 0)
         {
-            Debug.Log("°ÔÀÓ¿À¹ö");
+            Debug.Log("ê²Œì„ì˜¤ë²„");
             GameOverPanel.SetActive(true);
 
             this.GetComponent<PlayerMove>().enabled = false;

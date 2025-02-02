@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+
 
     // 마우스 왼쪽 버턴 누르고 있으면
     // 마구 클릭을 해도 

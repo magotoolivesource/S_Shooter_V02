@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class TargetFollwer : MonoBehaviour
 {
@@ -13,6 +13,7 @@ public class TargetFollwer : MonoBehaviour
     {
         m_LocalOffset = TargetTrans.position - this.transform.position;
     }
+
 
     void Update()
     {

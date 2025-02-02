@@ -12,11 +12,12 @@ public class EnemyHPStat : MonoBehaviour
         if (HP <= 0)
             return;
 
+
         HP = HP - (int)p_dmg;
         if( HP <= 0)
         {
-            //Debug.Log( "Àû hp : 0");
-            // ¾Ö´Ï¸ŞÀÌ¼Ç 1.3ÃÊµÚ¿¡ 
+            //Debug.Log( "ì  hp : 0");
+            // ì• ë‹ˆë©”ì´ì…˜ 1.3ì´ˆë’¤ì— 
             //GameObject.Destroy(gameObject);
             //GetComponent<NavMeshAgent>().speed = 0;
 
@@ -24,10 +25,10 @@ public class EnemyHPStat : MonoBehaviour
             GetComponent<Animator>().SetTrigger("Death");
             GetComponent<CapsuleCollider>().enabled = false;
 
-            //// 3ÃÊ µÚ¿¡ Áö¿ö¶ó
+            //// 3ì´ˆ ë’¤ì— ì§€ì›Œë¼
             //GameObject.Destroy(gameObject, 3f);
-            // 1ÃÊµÚ¿¡ ¾Æ·¡·Î ¶³¾îÁöµµ·Ï ÇÏ±â
-            // 3ÃÊµ¿¾È ¶³¾îÁøµÚ¿¡ Destroy() ÇÏ±â
+            // 1ì´ˆë’¤ì— ì•„ë˜ë¡œ ë–¨ì–´ì§€ë„ë¡ í•˜ê¸°
+            // 3ì´ˆë™ì•ˆ ë–¨ì–´ì§„ë’¤ì— Destroy() í•˜ê¸°
 
             //Thread.Sleep(1000);
             m_ISDeath = true;
@@ -40,21 +41,21 @@ public class EnemyHPStat : MonoBehaviour
 
     void StartSinking(int p_val)
     {
-        Debug.Log("ÇÔ¼ö È£Ãâ");
+        Debug.Log("í•¨ìˆ˜ í˜¸ì¶œ");
     }
 
 
     IEnumerator FallDown()
     {
 
-        //// return °ú °°´Ù
+        //// return ê³¼ ê°™ë‹¤
         //if( true)
         //    yield break;
 
-        // 1ÃÊ´ë±â
+        // 1ì´ˆëŒ€ê¸°
         yield return new WaitForSeconds(1.06f);
 
-        // ¾Æ·¡·Î ÀÌµ¿
+        // ì•„ë˜ë¡œ ì´ë™
         for (int i = 0; i < 1000; i++)
         {
             transform.Translate(0f, -1f * Time.deltaTime, 0f);
@@ -63,10 +64,10 @@ public class EnemyHPStat : MonoBehaviour
                 break;
             }
 
-            yield return null; // 1ÇÁ·¹ÀÓ ´ë±â
+            yield return null; // 1í”„ë ˆì„ ëŒ€ê¸°
         }
 
-        // Áö¿ì±â
+        // ì§€ìš°ê¸°
         GameObject.Destroy(gameObject);
     }
 
@@ -88,7 +89,7 @@ public class EnemyHPStat : MonoBehaviour
             m_DeathDelaySec -= Time.deltaTime;
             if (m_DeathDelaySec <= 0f)
             {
-                // ¾Æ·¡·Î ÀÌµ¿ Ã³¸®
+                // ì•„ë˜ë¡œ ì´ë™ ì²˜ë¦¬
                 Vector3 temppos = transform.position;
                 temppos.y -= 1f * Time.deltaTime;
                 transform.position = temppos;

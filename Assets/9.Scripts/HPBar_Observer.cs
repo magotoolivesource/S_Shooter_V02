@@ -3,10 +3,13 @@ using UnityEngine.UI;
 
 public class HPBar_Observer : MonoBehaviour
 {
+
+
     public Text HPTextLabel;
     public Image HPImg;
 
-    // 1锅掳 规过
+
+    // 1氩堨Ц 氚╇矔
     public PlayerStat PlayerStat;
 
     public void UpdateUIType01()
@@ -45,12 +48,12 @@ public class HPBar_Observer : MonoBehaviour
     {
         if( false )
         {
-            // 规过2-1
+            // 氚╇矔2-1
             UpdateUIType01();
         }
         else
         {
-            // 规过2-2
+            // 氚╇矔2-2
             UpdateUIType02();
         }
 
