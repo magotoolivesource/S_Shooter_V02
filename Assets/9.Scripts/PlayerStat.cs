@@ -6,6 +6,9 @@ public class PlayerStat : MonoBehaviour
     static public int Global_HP;
     static public int Global_MAXHP;
 
+    public GameObject GameOverPanel;
+
+
     public RectTransform HPImg;
     public Text HPText;
     public void UpdateHPBar()
@@ -61,6 +64,7 @@ public class PlayerStat : MonoBehaviour
         if ( HP <= 0)
         {
             Debug.Log("게임오버");
+            GameOverPanel.SetActive(true);
 
             this.GetComponent<PlayerMove>().enabled = false;
             this.GetComponent<PlayerAttack>().enabled = false;
@@ -71,11 +75,15 @@ public class PlayerStat : MonoBehaviour
 
     void Start()
     {
+        GameOverPanel.SetActive(false);
+
         PlayerStat.Global_HP = this.HP;
         PlayerStat.Global_MAXHP = this.HP;
 
         MaxHP = HP;
         UpdateHPBar();
+
+
     }
 
 
