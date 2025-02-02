@@ -1,5 +1,10 @@
 ﻿using UnityEngine;
 
+
+
+// 작업에 대한 리스트 작업 알려주기
+// 
+
 public class PlayerAttack : MonoBehaviour
 {
 
