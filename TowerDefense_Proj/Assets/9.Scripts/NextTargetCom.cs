@@ -68,6 +68,8 @@ public class NextTargetCom : MonoBehaviour
             Gizmos.DrawWireSphere(NextTarget.transform.position, 0.5f);
 
         }
+
+
     }
 
 

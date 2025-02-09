@@ -37,7 +37,7 @@ public class EnemyMove2 : MonoBehaviour
             TargetPos = TargetPos.NextTarget;
 
             //TargetPos = TargetPos.GetRandomNextTraget();
-            TargetPos = TargetPos.GetNextTraget(2);
+            //TargetPos = TargetPos.GetNextTraget(0);
         }
         else
         {
