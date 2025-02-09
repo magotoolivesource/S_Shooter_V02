@@ -24,7 +24,26 @@ public class Tower_Attack : MonoBehaviour
         Debug.Log( $"트리거 확인 : {other.name}");
         //this.name
 
-        Attack_Target = other.transform;
+        if( other.tag == "Throw")
+        {
+            return;
+        }
+
+        if(Attack_Target == null)
+        {
+            Attack_Target = other.transform;
+        }
+
+        // overlap
+        //Physics.OverlapBox
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Throw")
+            return;
+
+        Attack_Target = null;
     }
 
 
@@ -48,7 +67,7 @@ public class Tower_Attack : MonoBehaviour
         Quaternion yrot_qut = Quaternion.LookRotation(Attack_Target.position - transform.position
             , new Vector3(0f, 1f, 0f));
 
-        // atan2 회전 적용도 해보세요
+        // atan2 
 
 
         this.transform.rotation = yrot_qut;
@@ -56,6 +75,53 @@ public class Tower_Attack : MonoBehaviour
         //float yrot = 0;
         //this.transform.rotation = Quaternion.Euler(0f, yrot, 0f);
     }
+
+
+    // 1초에 한번씩 발사
+    public float DealySec = 1f;
+    protected float m_RemineSec = 0;
+    void UpdateAttack()
+    {
+
+        m_RemineSec -= Time.deltaTime;
+
+        if (Attack_Target == null)
+        {
+            return;
+        }
+
+        
+        if(m_RemineSec <= 0)
+        {
+            m_RemineSec = DealySec;
+            Debug.Log("발사");
+            AttackThrow();
+        }
+    }
+
+
+    public GameObject ThrowArrow;
+
+    public Transform ThrowPos;
+    public float ThrowPower = 300;
+    void AttackThrow()
+    {
+        // 발사체 복사
+        GameObject cloneobj = GameObject.Instantiate(ThrowArrow);
+
+        cloneobj.transform.position = ThrowPos.position;
+        cloneobj.transform.rotation = this.transform.rotation;
+        cloneobj.SetActive(true);
+
+        Throw_Line throwline = cloneobj.GetComponent<Throw_Line>();
+        throwline.ThrowPower = ThrowPower;
+
+        //Rigidbody body = cloneobj.GetComponent<Rigidbody>();
+        //body.AddForce(ThrowPos.forward * ThrowPower);
+
+        GameObject.Destroy(cloneobj, 5f);
+    }
+
 
     void Start()
     {
@@ -66,6 +132,6 @@ public class Tower_Attack : MonoBehaviour
     void Update()
     {
         UpdateTargetLookRotation();
-
+        UpdateAttack();
     }
 }
