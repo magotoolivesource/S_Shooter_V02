@@ -35,6 +35,9 @@ public class EnemyMove2 : MonoBehaviour
 
             // 도착 하면 다음 타겟 이동처리
             TargetPos = TargetPos.NextTarget;
+
+            //TargetPos = TargetPos.GetRandomNextTraget();
+            TargetPos = TargetPos.GetNextTraget(2);
         }
         else
         {
