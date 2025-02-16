@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class Tower_Attack : MonoBehaviour
@@ -53,20 +54,43 @@ public class Tower_Attack : MonoBehaviour
     public LayerMask m_EnemyLayerMask;
     Transform UpdateRangeSerchTarget()
     {
+        // rts 스타크래프트 유닛선택
+        // Physics.BoxCastAll
+        // Physics.OverlapBox
+
+
         // 범위안에 상대편이 있으면 공격처리하기
         // OverlapSphere trigger 상관없이 찾아 내는 방식
         Collider[] colliderarr = Physics.OverlapSphere(this.transform.position
                                     , this.m_Collider.radius
                                     , m_EnemyLayerMask);
 
-        // 충돌 처리 적용
-        if( colliderarr.Length > 0 )
+        // sql 문 에 대한 부분 공부하기
+        Vector3 towercenter = this.transform.position;
+        // linq C# 에서만 제공
+        var resultarr = from item in colliderarr
+                        orderby (item.transform.position - towercenter).magnitude descending
+                        select item;
+
+        Collider[] sortarr = resultarr.ToArray();
+        if (sortarr.Length > 0)
         {
-            // linq 란 형식으로 가까운 값 찾아오기
-            return colliderarr[0].transform;
+            return sortarr[0].transform;
         }
 
         return null;
+
+
+        //// 충돌 처리 적용
+        //if ( colliderarr.Length > 0 )
+        //{
+        //    // 가까운 오브젝트만 반환하도록 처리하기
+        //    // 소팅이용해서 찾아내기
+        //    // linq 란 형식으로 가까운 값 찾아오기
+        //    return colliderarr[0].transform;
+        //}
+
+        //return null;
     }
 
 
