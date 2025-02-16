@@ -44,8 +44,30 @@ public class Tower_Attack : MonoBehaviour
             return;
 
         Attack_Target = null;
+
+        Attack_Target = UpdateRangeSerchTarget();
     }
 
+
+    SphereCollider m_Collider;
+    public LayerMask m_EnemyLayerMask;
+    Transform UpdateRangeSerchTarget()
+    {
+        // 범위안에 상대편이 있으면 공격처리하기
+        // OverlapSphere trigger 상관없이 찾아 내는 방식
+        Collider[] colliderarr = Physics.OverlapSphere(this.transform.position
+                                    , this.m_Collider.radius
+                                    , m_EnemyLayerMask);
+
+        // 충돌 처리 적용
+        if( colliderarr.Length > 0 )
+        {
+            // linq 란 형식으로 가까운 값 찾아오기
+            return colliderarr[0].transform;
+        }
+
+        return null;
+    }
 
 
 
@@ -125,7 +147,7 @@ public class Tower_Attack : MonoBehaviour
 
     void Start()
     {
-        
+        this.m_Collider = GetComponent<SphereCollider>();
     }
 
     
