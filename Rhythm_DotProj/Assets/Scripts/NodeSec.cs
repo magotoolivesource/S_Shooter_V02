@@ -3,6 +3,8 @@ using UnityEngine;
 public class NodeSec : MonoBehaviour
 {
     public float HitSec = 10;
+    public float DurationSec = 0; // 0이하면 숏 0.1이라도 되면 10.1 초까지 유지 형태임
+
     public E_NodeType Nodetype = E_NodeType.MAX;
 
 
