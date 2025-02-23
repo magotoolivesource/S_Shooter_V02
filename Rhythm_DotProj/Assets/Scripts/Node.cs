@@ -14,6 +14,9 @@ public enum E_JudgeType
 
 public class Node : MonoBehaviour
 {
+
+    public float HitSec = 10;
+
     public float MoveSpeed = 5f;
 
     public float DeadY = -0.4f;
@@ -50,7 +53,7 @@ public class Node : MonoBehaviour
             return E_JudgeType.Miss;
         }
 
-        // ÆÇº°ÇÏ±â Èûµé´Ù
+        // íŒë³„í•˜ê¸° í˜ë“¤ë‹¤
         return E_JudgeType.Max;
     }
 
@@ -60,25 +63,27 @@ public class Node : MonoBehaviour
     {
         this.transform.Translate(0f, -MoveSpeed * Time.deltaTime, 0f);
 
-        // ³ëµåÁö¿ì±â
+        // ë…¸ë“œì§€ìš°ê¸°
         if (transform.position.y <= DeadY)
         {
             GameObject.Destroy(gameObject);
         }
 
 
-        // Å°¸¦ ´­·¶À»¶§ Ã³¸®ºÎºĞ
-        bool isakeypress = Input.GetKeyDown(PressCode);
-        if (isakeypress == false)
-            return;
+        return;
+        //// ë¼ì¸ì—ì„œ ì‚¬ìš©í•¨
+        //// í‚¤ë¥¼ ëˆŒë €ì„ë•Œ ì²˜ë¦¬ë¶€ë¶„
+        //bool isakeypress = Input.GetKeyDown(PressCode);
+        //if (isakeypress == false)
+        //    return;
 
 
-        E_JudgeType type = GetJudgeType();
-        if (type == E_JudgeType.Max)
-            return;
+        //E_JudgeType type = GetJudgeType();
+        //if (type == E_JudgeType.Max)
+        //    return;
 
-        Debug.Log( $"³ëµåÅ¸ÀÔ : {type}");
-        GameObject.Destroy(gameObject);
+        //Debug.Log( $"ë…¸ë“œíƒ€ì… : {type}");
+        //GameObject.Destroy(gameObject);
 
 
     }
