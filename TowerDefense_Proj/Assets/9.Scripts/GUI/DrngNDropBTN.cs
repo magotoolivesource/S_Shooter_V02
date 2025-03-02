@@ -6,6 +6,7 @@ public class DrngNDropBTN : MonoBehaviour
     , IBeginDragHandler
     , IEndDragHandler
     , IDragHandler
+    , IDropHandler
 {
     public Image DragIcon;
 
@@ -19,9 +20,21 @@ public class DrngNDropBTN : MonoBehaviour
     public void OnDrag(PointerEventData eventData)
     {
         Vector3 mpos = Input.mousePosition;
-        Debug.Log($"드래그중 : {this.name}, {mpos}, {eventData.position}");
+        //Debug.Log($"드래그중 : {this.name}, {mpos}, {eventData.position}");
 
         DragIcon.transform.position = eventData.position;
+    }
+
+    //public Image SendImage = null;
+    public void OnDrop(PointerEventData eventData)
+    {
+        DrngNDropBTN srcbtn = eventData.selectedObject.GetComponent<DrngNDropBTN>();
+
+        Debug.Log($"드랍처리 : {eventData.selectedObject.name} -> {this.name} ");
+
+        Sprite swapsprite = this.DragIcon.sprite;
+        this.DragIcon.sprite = srcbtn.DragIcon.sprite;
+        srcbtn.DragIcon.sprite = swapsprite;
     }
 
     public void OnEndDrag(PointerEventData eventData)
