@@ -2,14 +2,21 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class OnlyDropBTN : MonoBehaviour
+public class OnlyDropBTN : BaseDragNDropBTN
     , IBeginDragHandler
     , IEndDragHandler
     , IDragHandler
-    , IDropHandler
+    //, IDropHandler
 {
-    public Image DragIcon;
-    public Vector3 m_InitPos;
+
+    public override E_DragNDropType GetDragNDropType()
+    {
+        return E_DragNDropType.E_OnlyDrag;
+    }
+
+
+    //public Image DragIcon;
+    //public Vector3 m_InitPos;
 
     public bool m_ISChange = true;
 
@@ -28,30 +35,56 @@ public class OnlyDropBTN : MonoBehaviour
     }
 
 
+    ////public Image SendImage = null;
+    //public override void OnDrop(PointerEventData eventData)
+    //{
+    //    base.OnDrop(eventData);
 
-    //public Image SendImage = null;
-    public void OnDrop(PointerEventData eventData)
-    {
-        DrngNDropBTN srcbtn = eventData.selectedObject.GetComponent<DrngNDropBTN>();
-        Debug.Log($"드랍처리 : {eventData.selectedObject.name} -> {this.name} ");
+    //    ////DrngNDropBTN srcbtn = eventData.selectedObject.GetComponent<DrngNDropBTN>();
+    //    ////Debug.Log($"드랍처리 : {eventData.selectedObject.name} -> {this.name} ");
 
-        if(srcbtn != null)
-        {
-            // 복사
-            this.DragIcon.sprite = srcbtn.DragIcon.sprite;
-        }
+    //    ////if(srcbtn != null)
+    //    ////{
+    //    ////    // 복사
+    //    ////    this.DragIcon.sprite = srcbtn.DragIcon.sprite;
+    //    ////}
 
-        // 서로 치환
-        OnlyDropBTN seletedbtn = eventData.selectedObject.GetComponent<OnlyDropBTN>();
-        if (seletedbtn != null)
-        {
-            // 서로 치환
-            Sprite swapsprite = this.DragIcon.sprite;
-            this.DragIcon.sprite = seletedbtn.DragIcon.sprite;
-            seletedbtn.DragIcon.sprite = swapsprite;
-        }
+    //    ////// 서로 치환
+    //    ////OnlyDropBTN seletedbtn = eventData.selectedObject.GetComponent<OnlyDropBTN>();
+    //    ////if (seletedbtn != null)
+    //    ////{
+    //    ////    // 서로 치환
+    //    ////    Sprite swapsprite = this.DragIcon.sprite;
+    //    ////    this.DragIcon.sprite = seletedbtn.DragIcon.sprite;
+    //    ////    seletedbtn.DragIcon.sprite = swapsprite;
+    //    ////}
 
-    }
+
+    //    //DrngNDropBTN srcbtn = eventData.selectedObject.GetComponent<DrngNDropBTN>();
+    //    //Debug.Log($"드랍처리 : {eventData.selectedObject.name} -> {this.name} ");
+
+    //    //E_DragNDropType srctype = srcbtn.GetDragNDropType();
+    //    //E_DragNDropType desttype = this.GetDragNDropType();
+
+    //    //E_DropCopyType copytype = this.GetSrcTODestMatrixType(srctype, desttype);
+    //    //if (copytype == E_DropCopyType.E_Chnage)
+    //    //{
+    //    //    // 교체
+    //    //    ChangeDragNDrop(srcbtn, this);
+    //    //}
+    //    //else if (copytype == E_DropCopyType.E_Copy)
+    //    //{
+    //    //    // src -> dest 카피용
+    //    //    CopyDragNDrop(srcbtn, this);
+    //    //}
+    //    //else if (copytype == E_DropCopyType.E_Delete)
+    //    //{
+    //    //    // src 지우기
+    //    //    DeleteDragNDrop(srcbtn, this);
+    //    //}
+
+
+    //}
 
     public void OnEndDrag(PointerEventData eventData)
     {
