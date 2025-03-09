@@ -62,6 +62,7 @@ public class DrngNDropBTN : BaseDragNDropBTN
     {
         Debug.Log( $"드래드 시작 : {this.name}");
         m_InitPos = DragIcon.transform.position;
+
     }
 
     public void OnDrag(PointerEventData eventData)
